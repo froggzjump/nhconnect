@@ -1,0 +1,67 @@
+<?php require_once('includes/config.php'); 
+include('includes/sc-includes.php');
+
+mysql_select_db($database_follows, $follows);
+
+//DELETE CONTACT
+if (isset($_GET['contact'])) {
+mysql_query("DELETE FROM follows_contacts WHERE contact_id = ".$_GET['contact']."");
+mysql_query("DELETE FROM follows_history WHERE history_contact = ".$_GET['contact']."");
+mysql_query("DELETE FROM follows_notes WHERE note_contact = ".$_GET['contact']."");
+mysql_query("DELETE FROM follows_email WHERE followup_id = ".$_GET['contact']."");
+mysql_query("DELETE FROM follows_wait WHERE contact_id = ".$_GET['contact']."");
+set_msg('FollowUp Deleted');
+header('Location: contacts.php'); die;
+}
+//
+
+//Delete Workder
+if (isset($_GET['user'])) {
+mysql_query("DELETE FROM follows_users WHERE user_id = ".$_GET['user']."");
+set_msg('Worker Deleted');
+header('Location: users.php'); die;
+}
+//
+
+//DELETE NOTE
+if (isset($_GET['note'])) {
+mysql_query("DELETE FROM follows_notes WHERE note_id = ".$_GET['note']."");
+set_msg('Note Deleted');
+$cid = $_GET['id'];
+$redirect = "contact-details.php?id=$cid";
+header(sprintf('Location: %s', $redirect)); die;
+}
+//
+
+//Delete Contact Method from Category table
+if (isset($_GET['cat'])) {
+mysql_query("DELETE FROM category WHERE id = ".$_GET['cat']."");
+set_msg('Contact Method Deleted');
+header('Location: cmethod.php'); die;
+}
+//
+
+
+//Delete Notification
+if (isset($_GET['email'])) {
+mysql_query("DELETE FROM follows_email WHERE email_id = ".$_GET['email']."");
+set_msg('Email log Deleted');
+header('Location: myemails.php'); die;
+}
+
+//Delete stage from stages table
+if (isset($_GET['st'])) {
+mysql_query("DELETE FROM follows_stages WHERE id = ".$_GET['st']."");
+set_msg('Stage Deleted');
+header('Location: stages.php'); die;
+}
+
+//Delete group from group table
+if (isset($_GET['grp'])) {
+mysql_query("DELETE FROM follows_group WHERE group_id = ".$_GET['grp']."");
+set_msg('Group Deleted');
+header('Location: groups2.php'); die;
+}
+
+
+?>

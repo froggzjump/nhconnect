@@ -1,0 +1,52 @@
+<?php
+require_once('includes/config.php'); 
+include('includes/sc-includes.php');
+
+$pagetitle = 'Wait Queue';
+
+if (!function_exists("GetSQLValueString")) {
+	GetSQLValueString();
+}
+
+$groupinfo =  $database->getUserGroup($whois);
+$groupis = $groupinfo['group_id'];
+$groupnameis = $groupinfo['group_name'];
+
+
+HeaderInfo();	
+
+include('includes/header.php'); ?>
+  
+  <div class="container">
+  <div class="leftcolumn">
+  
+    <h2><?php echo MINISTRY . " Follow-Ups";?></h2> for <?php echo $row_userinfo['user_name']; ?>
+
+    <br /><br /><br />
+    
+   
+   <?php 
+    
+   	if($currentlevel==3){
+   		displayUsers_n($groupis);
+   	}else if($currentlevel==1){
+    displayUsers_nA();
+   	}
+    ?>
+    
+    
+ <br />
+ <?php echo "<a href=\"users.php\">Click here to make assignments</a>"; ?>
+
+
+  </div>
+  
+  <?php include('includes/right-column.php'); ?>
+  <br clear="all" />
+</div>
+
+<?php include('includes/footer.php'); ?>
+
+</body>
+</html>
+
