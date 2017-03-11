@@ -7,10 +7,10 @@ define("SITEID", "ignite");
 //
 
 //Database Settings
-$hostname_follows = "10.6.171.214 ";  
-$database_follows = "adminignite"; //The name of the database
-$username_follows = "adminignite"; //The username for the database
-$password_follows = "Web12345nh"; // The password for the database
+$hostname_follows = "";  
+$database_follows = ""; //The name of the database
+$username_follows = ""; //The username for the database
+$password_follows = ""; // The password for the database
 $follows = mysql_connect($hostname_follows, $username_follows, $password_follows) or trigger_error(mysql_error(),E_USER_ERROR); 
 mysql_select_db($database_follows, $follows);
 //
